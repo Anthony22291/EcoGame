@@ -1,0 +1,1837 @@
+fileFormatVersion: 2
+guid: c33313d171567014e97000f4d6643f69
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 814552386194578049
+    second: Tile-Bosque-Sheet-_0
+  - first:
+      213: -3572560397854845884
+    second: Tile-Bosque-Sheet-_1
+  - first:
+      213: -2734205445273485190
+    second: Tile-Bosque-Sheet-_2
+  - first:
+      213: -4769422731988436771
+    second: Tile-Bosque-Sheet-_3
+  - first:
+      213: 4045483457053158516
+    second: Tile-Bosque-Sheet-_4
+  - first:
+      213: 5160250812466147363
+    second: Tile-Bosque-Sheet-_5
+  - first:
+      213: -4868600458694229554
+    second: Tile-Bosque-Sheet-_6
+  - first:
+      213: -6441891863810159937
+    second: Tile-Bosque-Sheet-_7
+  - first:
+      213: -7315414268107127398
+    second: Tile-Bosque-Sheet-_8
+  - first:
+      213: -6761612517048274795
+    second: Tile-Bosque-Sheet-_9
+  - first:
+      213: 863522683913689955
+    second: Tile-Bosque-Sheet-_10
+  - first:
+      213: -47488348648420577
+    second: Tile-Bosque-Sheet-_11
+  - first:
+      213: 3720783393747429689
+    second: Tile-Bosque-Sheet-_12
+  - first:
+      213: 2046037144880294149
+    second: Tile-Bosque-Sheet-_13
+  - first:
+      213: 8114588531176326928
+    second: Tile-Bosque-Sheet-_14
+  - first:
+      213: 4848136796982357009
+    second: Tile-Bosque-Sheet-_15
+  - first:
+      213: -6721603759947540858
+    second: Tile-Bosque-Sheet-_16
+  - first:
+      213: -4315394717166158494
+    second: Tile-Bosque-Sheet-_17
+  - first:
+      213: -6806401833315912786
+    second: Tile-Bosque-Sheet-_18
+  - first:
+      213: 7368973601476617157
+    second: Tile-Bosque-Sheet-_19
+  - first:
+      213: 9135110840387585975
+    second: Tile-Bosque-Sheet-_20
+  - first:
+      213: -1875531284164887930
+    second: Tile-Bosque-Sheet-_21
+  - first:
+      213: 6665342170475495264
+    second: Tile-Bosque-Sheet-_22
+  - first:
+      213: 7870678886709050362
+    second: Tile-Bosque-Sheet-_23
+  - first:
+      213: -8307893278894395933
+    second: Tile-Bosque-Sheet-_24
+  - first:
+      213: 4301557763917631850
+    second: Tile-Bosque-Sheet-_25
+  - first:
+      213: 4440155036304928408
+    second: Tile-Bosque-Sheet-_26
+  - first:
+      213: 1408961910387078610
+    second: Tile-Bosque-Sheet-_27
+  - first:
+      213: 1546565695448870275
+    second: Tile-Bosque-Sheet-_28
+  - first:
+      213: 1788206683023951200
+    second: Tile-Bosque-Sheet-_29
+  - first:
+      213: 4698124458370701609
+    second: Tile-Bosque-Sheet-_30
+  - first:
+      213: 1992369463000357368
+    second: Tile-Bosque-Sheet-_31
+  - first:
+      213: 7921118154174767029
+    second: Tile-Bosque-Sheet-_32
+  - first:
+      213: -4457157359160494830
+    second: Tile-Bosque-Sheet-_33
+  - first:
+      213: -1545548764116673872
+    second: Tile-Bosque-Sheet-_34
+  - first:
+      213: -8409990282430171926
+    second: Tile-Bosque-Sheet-_35
+  - first:
+      213: -6595620464538160153
+    second: Tile-Bosque-Sheet-_36
+  - first:
+      213: 5366131134235923076
+    second: Tile-Bosque-Sheet-_37
+  - first:
+      213: -8806493697712683701
+    second: Tile-Bosque-Sheet-_38
+  - first:
+      213: -1094629773654863254
+    second: Tile-Bosque-Sheet-_39
+  - first:
+      213: 4013539715057855121
+    second: Tile-Bosque-Sheet-_40
+  - first:
+      213: -4775713586190487272
+    second: Tile-Bosque-Sheet-_41
+  - first:
+      213: -6470812945890333623
+    second: Tile-Bosque-Sheet-_42
+  - first:
+      213: -7758030038850129167
+    second: Tile-Bosque-Sheet-_43
+  - first:
+      213: -6620085032573760678
+    second: Tile-Bosque-Sheet-_44
+  - first:
+      213: -508293913092429335
+    second: Tile-Bosque-Sheet-_45
+  - first:
+      213: 8256825539646296452
+    second: Tile-Bosque-Sheet-_46
+  - first:
+      213: -1726505062697040862
+    second: Tile-Bosque-Sheet-_47
+  - first:
+      213: 2836900592151071553
+    second: Tile-Bosque-Sheet-_48
+  - first:
+      213: 1568305358553436666
+    second: Tile-Bosque-Sheet-_49
+  - first:
+      213: 4615246182353190107
+    second: Tile-Bosque-Sheet-_50
+  - first:
+      213: 7308883489421481442
+    second: Tile-Bosque-Sheet-_51
+  - first:
+      213: 670114632138313195
+    second: Tile-Bosque-Sheet-_52
+  - first:
+      213: 2489486216819462819
+    second: Tile-Bosque-Sheet-_53
+  - first:
+      213: -5354360033765779617
+    second: Tile-Bosque-Sheet-_54
+  - first:
+      213: -3364504231514607587
+    second: Tile-Bosque-Sheet-_55
+  - first:
+      213: -6841436166208690770
+    second: Tile-Bosque-Sheet-_56
+  - first:
+      213: 4323055332340077227
+    second: Tile-Bosque-Sheet-_57
+  - first:
+      213: 663414809557325113
+    second: Tile-Bosque-Sheet-_58
+  - first:
+      213: -5403073577954458983
+    second: Tile-Bosque-Sheet-_59
+  - first:
+      213: 7404056427829154053
+    second: Tile-Bosque-Sheet-_60
+  - first:
+      213: -7239714791616857959
+    second: Tile-Bosque-Sheet-_61
+  - first:
+      213: 6292071500211590988
+    second: Tile-Bosque-Sheet-_62
+  - first:
+      213: 8889501426709919558
+    second: Tile-Bosque-Sheet-_63
+  - first:
+      213: -3693060392709292689
+    second: Tile-Bosque-Sheet-_64
+  - first:
+      213: 3433608367779448778
+    second: Tile-Bosque-Sheet-_65
+  - first:
+      213: 4014567857109161863
+    second: Tile-Bosque-Sheet-_66
+  - first:
+      213: 364710153323881506
+    second: Tile-Bosque-Sheet-_67
+  - first:
+      213: 799804625774865053
+    second: Tile-Bosque-Sheet-_68
+  - first:
+      213: 88020378111584506
+    second: Tile-Bosque-Sheet-_69
+  - first:
+      213: -7442463490606069222
+    second: Tile-Bosque-Sheet-_70
+  - first:
+      213: -3199201525468191639
+    second: Tile-Bosque-Sheet-_71
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 122
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18a131e541fdd4b00800000000000000
+      internalID: 814552386194578049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 122
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 444db331f37bb6ec0800000000000000
+      internalID: -3572560397854845884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a70098b42a62e0ad0800000000000000
+      internalID: -2734205445273485190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_3
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 122
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd8f7247b4b9fcdb0800000000000000
+      internalID: -4769422731988436771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_4
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 120
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c6f5235c1742830800000000000000
+      internalID: 4045483457053158516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_5
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 120
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32037f416c4ec9740800000000000000
+      internalID: 5160250812466147363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_6
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 122
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec10a328da14f6cb0800000000000000
+      internalID: -4868600458694229554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_7
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 120
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbacd100b7dc996a0800000000000000
+      internalID: -6441891863810159937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_8
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 116
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9586ac5b7d6a7a90800000000000000
+      internalID: -7315414268107127398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_9
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 111
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 590b0848d3de922a0800000000000000
+      internalID: -6761612517048274795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_10
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 113
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36bda2e4e49dbfb00800000000000000
+      internalID: 863522683913689955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_11
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 110
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1b47d73999475ff0800000000000000
+      internalID: -47488348648420577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_12
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 109
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 939ec7678c0e2a330800000000000000
+      internalID: 3720783393747429689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_13
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 109
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50928d161fbf46c10800000000000000
+      internalID: 2046037144880294149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_14
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 101
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0174933b64fcc9070800000000000000
+      internalID: 8114588531176326928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_15
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 104
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11c22a6faba084340800000000000000
+      internalID: 4848136796982357009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_16
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 104
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 686956f2ef018b2a0800000000000000
+      internalID: -6721603759947540858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_17
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 100
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26db6b16e53ac14c0800000000000000
+      internalID: -4315394717166158494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_18
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 100
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea333ae289dca81a0800000000000000
+      internalID: -6806401833315912786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_19
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 99
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c3ae33b27ad34660800000000000000
+      internalID: 7368973601476617157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_20
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 97
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b74f11d8ee66ce70800000000000000
+      internalID: 9135110840387585975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_21
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 97
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68a383aeb36c8f5e0800000000000000
+      internalID: -1875531284164887930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_22
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 99
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06f7f99b36d008c50800000000000000
+      internalID: 6665342170475495264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_23
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 99
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afbb57f2fb44a3d60800000000000000
+      internalID: 7870678886709050362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_24
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 99
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ede4a7741f64bc80800000000000000
+      internalID: -8307893278894395933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_25
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 90
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a615223eef332bb30800000000000000
+      internalID: 4301557763917631850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_26
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 88
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89eed960b799e9d30800000000000000
+      internalID: 4440155036304928408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_27
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 90
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d57daa7463ad8310800000000000000
+      internalID: 1408961910387078610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_28
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 88
+        width: 8
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38de8035e41867510800000000000000
+      internalID: 1546565695448870275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_29
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 87
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0654f9ef08cf0d810800000000000000
+      internalID: 1788206683023951200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_30
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 87
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92992cb9d47133140800000000000000
+      internalID: 4698124458370701609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_31
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 85
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f9d877787156ab10800000000000000
+      internalID: 1992369463000357368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_32
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 75
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bf1c7b4ef67ded60800000000000000
+      internalID: 7921118154174767029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_33
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 79
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21578333ffef422c0800000000000000
+      internalID: -4457157359160494830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_34
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 79
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ba18c3769b1d8ae0800000000000000
+      internalID: -1545548764116673872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_35
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 79
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae4334b6566b94b80800000000000000
+      internalID: -8409990282430171926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_36
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 78
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e3f7e1f126a774a0800000000000000
+      internalID: -6595620464538160153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_37
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 78
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 482db4ae5d3587a40800000000000000
+      internalID: 5366131134235923076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_38
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 67
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b458e1704ac09c580800000000000000
+      internalID: -8806493697712683701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_39
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 67
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a625cbc35081fc0f0800000000000000
+      internalID: -1094629773654863254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_40
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 67
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19a22ff2b15f2b730800000000000000
+      internalID: 4013539715057855121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_41
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 67
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 811fb12dbc149bdb0800000000000000
+      internalID: -4775713586190487272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_42
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 67
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94c2538d8ed0336a0800000000000000
+      internalID: -6470812945890333623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_43
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 67
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f2378198c0f55490800000000000000
+      internalID: -7758030038850129167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_44
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 70
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5b8f82dcbbb024a0800000000000000
+      internalID: -6620085032573760678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_45
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 68
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e9e1ac016d22f8f0800000000000000
+      internalID: -508293913092429335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_46
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 68
+        width: 13
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4819dfee413269270800000000000000
+      internalID: 8256825539646296452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_47
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 55
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 224870bfac83a08e0800000000000000
+      internalID: -1726505062697040862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_48
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 54
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14b824ade02be5720800000000000000
+      internalID: 2836900592151071553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_49
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 55
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af15be31a6db3c510800000000000000
+      internalID: 1568305358553436666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_50
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 54
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdcb32243f5ac0040800000000000000
+      internalID: 4615246182353190107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_51
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 55
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e55fab3fce5e6560800000000000000
+      internalID: 7308883489421481442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_52
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 44
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bed456f15b9bc4900800000000000000
+      internalID: 670114632138313195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_53
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 45
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a251ca368e6c8220800000000000000
+      internalID: 2489486216819462819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_54
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 46
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5797dbfaed71b5b0800000000000000
+      internalID: -5354360033765779617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_55
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 43
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d10f5433a31ee41d0800000000000000
+      internalID: -3364504231514607587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_56
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 36
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea5ee97ed065e01a0800000000000000
+      internalID: -6841436166208690770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_57
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 40
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba21d749be39efb30800000000000000
+      internalID: 4323055332340077227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_58
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 11
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 935d56e114ce43900800000000000000
+      internalID: 663414809557325113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_59
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 16
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 992c9b2253d6405b0800000000000000
+      internalID: -5403073577954458983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_60
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 13
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50154bdb71e70c660800000000000000
+      internalID: 7404056427829154053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_61
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 19
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998398231cd578b90800000000000000
+      internalID: -7239714791616857959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_62
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 13
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c47987f41bde15750800000000000000
+      internalID: 6292071500211590988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_63
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 19
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6477f51f27add5b70800000000000000
+      internalID: 8889501426709919558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_64
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 13
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d7f76b32d9fbcc0800000000000000
+      internalID: -3693060392709292689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_65
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 19
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac78d435e90a6af20800000000000000
+      internalID: 3433608367779448778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_66
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 5
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78751b9223c96b730800000000000000
+      internalID: 4014567857109161863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_67
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 5
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22429deb3f5bf0500800000000000000
+      internalID: 364710153323881506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_68
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 4
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a6601d11a791b00800000000000000
+      internalID: 799804625774865053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_69
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 4
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af8265a4116b83100800000000000000
+      internalID: 88020378111584506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_70
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 4
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1a8c9c13ee07b890800000000000000
+      internalID: -7442463490606069222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile-Bosque-Sheet-_71
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 89
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 964a495a9272a93d0800000000000000
+      internalID: -3199201525468191639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
