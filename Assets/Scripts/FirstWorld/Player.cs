@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private PlayerAttackHitbox attackHitbox;
     [Header("Configuración de Movimiento")]
     [SerializeField] private float velocidadMovimiento = 5f;
 
@@ -22,8 +23,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float knockbackDuration = 0.2f;
 
     [Header("Configuración de Respawn")]
-    [SerializeField] private float tiempoAntesDespawn = 1f; // Tiempo antes de reaparecer
-    [SerializeField] private bool fadeAlMorir = true; // Efecto de desvanecimiento
+    [SerializeField] private float tiempoAntesDespawn = 1f;
+    [SerializeField] private bool fadeAlMorir = true;
+
+    [Header("Configuración de Ataque")]
+    [SerializeField] private float attackDuration = 0.3f;
+    private bool isAttacking = false;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -36,7 +41,6 @@ public class Player : MonoBehaviour
     private bool isKnockedBack = false;
     private bool isDead = false;
 
-    // Posición inicial del jugador
     private Vector3 posicionInicial;
 
     void Start()
@@ -48,7 +52,6 @@ public class Player : MonoBehaviour
         rb.freezeRotation = true;
         rb.gravityScale = 0;
 
-        // Guardar la posición inicial
         posicionInicial = transform.position;
 
         currentHealth = maxHealth;
@@ -60,6 +63,13 @@ public class Player : MonoBehaviour
     {
         if (isDead || isKnockedBack) return;
 
+        if (Input.GetMouseButtonDown(0) && !isAttacking)
+        {
+            StartCoroutine(AttackCoroutine());
+        }
+
+        if (isAttacking) return;
+
         movimiento.x = Input.GetAxisRaw("Horizontal");
         movimiento.y = Input.GetAxisRaw("Vertical");
 
@@ -68,6 +78,8 @@ public class Player : MonoBehaviour
             movimiento = movimiento.normalized;
             ultimaDireccion = movimiento;
         }
+
+        UpdateHitboxPosition();
 
         if (animator != null)
         {
@@ -85,10 +97,37 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isKnockedBack && !isDead)
+        if (!isKnockedBack && !isDead && !isAttacking)
         {
             rb.MovePosition(rb.position + movimiento * velocidadMovimiento * Time.fixedDeltaTime);
         }
+    }
+
+    void UpdateHitboxPosition()
+    {
+        if (attackHitbox == null) return;
+
+        Transform hitboxTransform = attackHitbox.transform;
+        Vector3 offset = Vector3.zero;
+
+        if (Mathf.Abs(ultimaDireccion.y) > Mathf.Abs(ultimaDireccion.x) && ultimaDireccion.y > 0)
+        {
+            offset = new Vector3(0f, 0.6f, 0f);
+        }
+        else if (Mathf.Abs(ultimaDireccion.y) > Mathf.Abs(ultimaDireccion.x) && ultimaDireccion.y < 0)
+        {
+            offset = new Vector3(0f, -0.6f, 0f);
+        }
+        else if (ultimaDireccion.x > 0)
+        {
+            offset = new Vector3(0.6f, 0f, 0f);
+        }
+        else if (ultimaDireccion.x < 0)
+        {
+            offset = new Vector3(-0.6f, 0f, 0f);
+        }
+
+        hitboxTransform.localPosition = offset;
     }
 
     void CreateHearts()
@@ -195,15 +234,11 @@ public class Player : MonoBehaviour
         rb.velocity = Vector2.zero;
         movimiento = Vector2.zero;
 
-        Debug.Log("¡Jugador muerto! Reapareciendo...");
-
-        // Iniciar el proceso de respawn
         StartCoroutine(RespawnCoroutine());
     }
 
     IEnumerator RespawnCoroutine()
     {
-        // Opcional: Efecto de desvanecimiento
         if (fadeAlMorir)
         {
             float fadeTime = 0.5f;
@@ -219,41 +254,32 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Esperar antes de reaparecer
         yield return new WaitForSeconds(tiempoAntesDespawn);
 
-        // Reaparecer en la posición inicial
         Respawn();
     }
 
     void Respawn()
     {
-        // Restaurar posición
         transform.position = posicionInicial;
 
-        // Restaurar vida completa
         currentHealth = maxHealth;
         UpdateHearts();
 
-        // Restaurar estado visual
         spriteRenderer.color = Color.white;
         spriteRenderer.enabled = true;
 
-        // Restaurar estados
         isDead = false;
         isInvulnerable = false;
         isKnockedBack = false;
 
-        // Aplicar invulnerabilidad temporal al reaparecer
         StartCoroutine(InvulnerabilidadRespawn());
-
-        Debug.Log("¡Jugador reaparecido!");
     }
 
     IEnumerator InvulnerabilidadRespawn()
     {
         isInvulnerable = true;
-        float tiempoProteccion = 2f; // 2 segundos de invulnerabilidad al reaparecer
+        float tiempoProteccion = 2f;
         float elapsed = 0f;
 
         while (elapsed < tiempoProteccion)
@@ -290,10 +316,26 @@ public class Player : MonoBehaviour
         }
     }
 
-    // Método público para cambiar la posición de respawn (útil para checkpoints)
     public void SetRespawnPosition(Vector3 newPosition)
     {
         posicionInicial = newPosition;
         Debug.Log("Nueva posición de respawn establecida: " + newPosition);
     }
+
+    IEnumerator AttackCoroutine()
+    {
+        isAttacking = true;
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Attack");
+            animator.SetFloat("LastHorizontal", ultimaDireccion.x);
+            animator.SetFloat("LastVertical", ultimaDireccion.y);
+        }
+
+        yield return new WaitForSeconds(attackDuration);
+
+        isAttacking = false;
+    }
+
 }
