@@ -256,7 +256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05216846, y: 0.914739}
   m_AnchorMax: {x: 0.06458423, y: 0.9373695}
-  m_AnchoredPosition: {x: -29, y: 1}
+  m_AnchoredPosition: {x: -28.99997, y: 1}
   m_SizeDelta: {x: 168.38, y: 38}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &522163312
@@ -294,7 +294,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 748965344}
-  - component: {fileID: 748965340}
   - component: {fileID: 748965343}
   - component: {fileID: 748965342}
   - component: {fileID: 748965341}
@@ -306,32 +305,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &748965340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748965339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d516d32907102f545a3ec5c9cd9d96e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 6
-  jumpForce: 13
-  coyoteTime: 0.15
-  jumpBufferTime: 0.15
-  maxHealth: 15
-  fullHeart: {fileID: 1564688358316481467, guid: fd825f27eecdf5d4eb37d2f58e864d88, type: 3}
-  emptyHeart: {fileID: 5726080727020278575, guid: fd825f27eecdf5d4eb37d2f58e864d88, type: 3}
-  heartsContainer: {fileID: 522163311}
-  heartPrefab: {fileID: 1222236276979073336, guid: c19ee089ea8b0d1448eaf6ad5479d633, type: 3}
-  invulnerabilityTime: 1.5
-  knockbackForce: 5
-  knockbackDuration: 0.2
-  tiempoAntesDespawn: 1
-  fadeAlMorir: 1
 --- !u!61 &748965341
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -449,7 +422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748965339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.64, y: -1.22, z: 0}
+  m_LocalPosition: {x: -8.05, y: -1.87, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 1034961024}
