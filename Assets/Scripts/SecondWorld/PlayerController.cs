@@ -1,213 +1,370 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
-
 {
+    // -----------------------------------------------------
+    // MOVIMIENTO PLATAFORMA (TU SISTEMA ORIGINAL)
+    // -----------------------------------------------------
 
     [Header("Movimiento")]
-
     public float speed = 6f;
-
     public float jumpForce = 13f;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private Animator animator;
 
     private Vector3 originalScale;
-
     private float moveInput;
 
     [Header("Coyote Time")]
-
     public float coyoteTime = 0.15f;
-
     private float coyoteCounter;
 
-    [Header("Jump Buffer (permite saltar aunque aprietes un poco antes)")]
-
+    [Header("Jump Buffer")]
     public float jumpBufferTime = 0.15f;
-
     private float jumpBufferCounter;
-
-    // Ground por colisiones
-
-    private int groundContacts = 0;
-
-    private bool IsGrounded => groundContacts > 0;
-
     private bool jumpPressed;
 
-    void Awake()
+    private int groundContacts = 0;
+    private bool IsGrounded => groundContacts > 0;
 
+
+    // -----------------------------------------------------
+    // SISTEMA DE VIDA (DE TU COMPAÑERO)
+    // -----------------------------------------------------
+
+    [Header("Sistema de Vida")]
+    [SerializeField] private int maxHealth = 6;
+    private int currentHealth;
+
+    [SerializeField] private Sprite fullHeart;
+    [SerializeField] private Sprite emptyHeart;
+    [SerializeField] private Transform heartsContainer;
+    [SerializeField] private GameObject heartPrefab;
+
+    private List<Image> heartImages = new List<Image>();
+
+    [Header("Daño - Invulnerabilidad")]
+    [SerializeField] private float invulnerabilityTime = 1.5f;
+    [SerializeField] private float knockbackForce = 5f;
+    [SerializeField] private float knockbackDuration = 0.2f;
+
+    private bool isInvulnerable = false;
+    private bool isKnockedBack = false;
+    private bool isDead = false;
+
+    [Header("Respawn")]
+    [SerializeField] private float tiempoAntesDespawn = 1f;
+    [SerializeField] private bool fadeAlMorir = true;
+
+    private Vector3 posicionInicial;
+
+
+    // =====================================================
+    // START
+    // =====================================================
+    void Start()
     {
-
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
 
         originalScale = transform.localScale;
 
+        posicionInicial = transform.position;
+
+        currentHealth = maxHealth;
+        CreateHearts();
+        UpdateHearts();
     }
 
+    // =====================================================
+    // UPDATE (Entrada de movimiento y animaciones)
+    // =====================================================
     void Update()
-
     {
-
-        // Entrada horizontal
+        if (isDead) return;
 
         moveInput = Input.GetAxisRaw("Horizontal");
 
-        // Guardamos el input de salto (no saltamos aquí)
-
         if (Input.GetKeyDown(KeyCode.Space))
-
-        {
-
             jumpPressed = true;
 
-        }
-
+        UpdateAnimations();
     }
 
+    // =====================================================
+    // FIXED UPDATE (Físicas)
+    // =====================================================
     void FixedUpdate()
-
     {
-
-        HandleMovement();
+        if (!isKnockedBack && !isDead)
+            HandleMovement();
 
         HandleTimers();
-
         HandleJump();
-
     }
 
-    // -------------------- MOVIMIENTO --------------------
 
+    // -----------------------------------------------------
+    // MOVIMIENTO PLATAFORMA
+    // -----------------------------------------------------
     void HandleMovement()
-
     {
-
-        // Movimiento horizontal
-
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
-        // Flip sin deformar
-
         if (moveInput != 0)
-
-        {
-
-            transform.localScale = new Vector3(
-
-                Mathf.Sign(moveInput) * Mathf.Abs(originalScale.x),
-
-                originalScale.y,
-
-                originalScale.z
-
-            );
-
-        }
-
+            sr.flipX = moveInput < 0;
     }
 
-    // -------------------- TIMERS (COYOTE + JUMP BUFFER) --------------------
-
-    void HandleTimers()
-
+    void UpdateAnimations()
     {
+        float speedX = Mathf.Abs(moveInput);
+        animator.SetFloat("Speed", speedX);
 
-        // Coyote time: tiempo desde la última vez que tocaste el suelo
+        animator.SetBool("IsJumping", !IsGrounded && rb.velocity.y > 0);
+        animator.SetBool("IsFalling", !IsGrounded && rb.velocity.y < 0);
+    }
 
+
+    // -----------------------------------------------------
+    // TIMERS (Coyote + JumpBuffer)
+    // -----------------------------------------------------
+    void HandleTimers()
+    {
         if (IsGrounded)
-
             coyoteCounter = coyoteTime;
-
         else
-
             coyoteCounter -= Time.fixedDeltaTime;
 
-        // Jump buffer: tiempo desde que apretaste salto
-
         if (jumpPressed)
-
         {
-
             jumpBufferCounter = jumpBufferTime;
-
-            jumpPressed = false; // consumimos la señal, pero dejamos correr el timer
-
+            jumpPressed = false;
         }
-
         else
-
-        {
-
             jumpBufferCounter -= Time.fixedDeltaTime;
-
-        }
-
     }
 
-    // -------------------- SALTO --------------------
 
+    // -----------------------------------------------------
+    // SALTO
+    // -----------------------------------------------------
     void HandleJump()
-
     {
-
-        // Solo saltamos si:
-
-        // - Apretaste space hace poco (jumpBufferCounter > 0)
-
-        // - Todavía estás dentro del coyote time (coyoteCounter > 0)
-
         if (jumpBufferCounter > 0f && coyoteCounter > 0f)
-
         {
-
-            // Reseteamos la velocidad vertical para que el salto siempre sea limpio
-
             rb.velocity = new Vector2(rb.velocity.x, 0f);
-
-            // Impulso hacia arriba
-
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-            // Consumimos ambos timers
-
-            jumpBufferCounter = 0f;
-
             coyoteCounter = 0f;
-
+            jumpBufferCounter = 0f;
         }
-
     }
 
-    // -------------------- DETECCIÓN DE SUELO POR COLISIÓN --------------------
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    // -----------------------------------------------------
+    // SISTEMA DE VIDA (DE TU COMPAÑERO)
+    // -----------------------------------------------------
 
+    void CreateHearts()
     {
+        foreach (Transform child in heartsContainer)
+            Destroy(child.gameObject);
 
-        if (collision.collider.CompareTag("Ground"))
+        heartImages.Clear();
 
+        for (int i = 0; i < maxHealth; i++)
         {
+            GameObject heart = Instantiate(heartPrefab, heartsContainer);
+            heartImages.Add(heart.GetComponent<Image>());
+        }
+    }
 
-            groundContacts++;
+    void UpdateHearts()
+    {
+        for (int i = 0; i < heartImages.Count; i++)
+            heartImages[i].sprite = (i < currentHealth) ? fullHeart : emptyHeart;
+    }
 
+    public void TakeDamage(int damage, Vector2 damageSource)
+    {
+        if (isInvulnerable || isDead) return;
+
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        UpdateHearts();
+
+        StartCoroutine(InvulnerabilityCoroutine());
+        StartCoroutine(KnockbackCoroutine(damageSource));
+
+        if (currentHealth <= 0)
+            Die();
+    }
+
+
+    // -----------------------------------------------------
+    // INVULNERABILIDAD
+    // -----------------------------------------------------
+    IEnumerator InvulnerabilityCoroutine()
+    {
+        isInvulnerable = true;
+
+        float elapsed = 0f;
+
+        while (elapsed < invulnerabilityTime)
+        {
+            sr.enabled = !sr.enabled;
+            elapsed += 0.1f;
+            yield return new WaitForSeconds(0.1f);
         }
 
+        sr.enabled = true;
+        isInvulnerable = false;
+    }
+
+
+    // -----------------------------------------------------
+    // KNOCKBACK
+    // -----------------------------------------------------
+    IEnumerator KnockbackCoroutine(Vector2 damageSource)
+    {
+        isKnockedBack = true;
+
+        Vector2 dir = ((Vector2)transform.position - damageSource).normalized;
+        rb.velocity = dir * knockbackForce;
+
+        yield return new WaitForSeconds(knockbackDuration);
+
+        rb.velocity = Vector2.zero;
+        isKnockedBack = false;
+    }
+
+
+    // -----------------------------------------------------
+    // MUERTE + RESPAWN
+    // -----------------------------------------------------
+    void Die()
+    {
+        if (isDead) return;
+
+        isDead = true;
+        rb.velocity = Vector2.zero;
+
+        StartCoroutine(RespawnCoroutine());
+    }
+
+    IEnumerator RespawnCoroutine()
+    {
+        if (fadeAlMorir)
+        {
+            float t = 0f;
+            Color baseColor = sr.color;
+
+            while (t < 0.5f)
+            {
+                t += Time.deltaTime;
+                float a = Mathf.Lerp(1, 0, t / 0.5f);
+                sr.color = new Color(baseColor.r, baseColor.g, baseColor.b, a);
+                yield return null;
+            }
+        }
+
+        yield return new WaitForSeconds(tiempoAntesDespawn);
+
+        Respawn();
+    }
+
+    void Respawn()
+    {
+        transform.position = posicionInicial;
+
+        currentHealth = maxHealth;
+        UpdateHearts();
+
+        sr.color = Color.white;
+
+        isDead = false;
+        isInvulnerable = false;
+        isKnockedBack = false;
+
+        StartCoroutine(InvulnerabilidadRespawn());
+    }
+
+    IEnumerator InvulnerabilidadRespawn()
+    {
+        isInvulnerable = true;
+
+        float t = 0f;
+        while (t < 2f)
+        {
+            t += 0.1f;
+            sr.enabled = !sr.enabled;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        sr.enabled = true;
+        isInvulnerable = false;
+    }
+
+
+    // -----------------------------------------------------
+    // TRIGGERS
+    // -----------------------------------------------------
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+            groundContacts++;
+
+        if (collision.collider.CompareTag("Enemy"))
+            TakeDamage(1, collision.transform.position);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
-
     {
-
         if (collision.collider.CompareTag("Ground"))
-
-        {
-
             groundContacts--;
-
-        }
-
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("HealthPickup"))
+        {
+            Heal(1);
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.CompareTag("HeartContainer"))
+        {
+            IncreaseMaxHealth(1);
+            Destroy(collision.gameObject);
+        }
+    }
+
+
+    // -----------------------------------------------------
+    // API
+    // -----------------------------------------------------
+    public void Heal(int amount)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        UpdateHearts();
+    }
+
+    public void IncreaseMaxHealth(int amount)
+    {
+        maxHealth += amount;
+        currentHealth += amount;
+        CreateHearts();
+        UpdateHearts();
+    }
+
+    public void SetRespawnPosition(Vector3 newPos)
+    {
+        posicionInicial = newPos;
+    }
 }
