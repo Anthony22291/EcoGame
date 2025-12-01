@@ -1,22 +1,20 @@
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class Door : MonoBehaviour
 {
-    public string requiredKeyId;
+    public int requiredKeyId;
     public GameObject mensajeLlaveIncorrecta;
-
     bool isOpen = false;
 
-    void OnTriggerStay2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!other.CompareTag("Player") || isOpen) return;
+        if (!collision.gameObject.CompareTag("Player") || isOpen) return;
 
-        if (!Input.GetKeyDown(KeyCode.E)) return;
-
-        PlayerKeys pk = other.GetComponent<PlayerKeys>();
+        PlayerKeys pk = collision.gameObject.GetComponent<PlayerKeys>();
         if (pk == null) return;
 
-        if (pk.currentKeyId == requiredKeyId)
+        if (pk.HasKey(requiredKeyId))
         {
             isOpen = true;
             gameObject.SetActive(false);
@@ -26,7 +24,15 @@ public class Door : MonoBehaviour
             if (mensajeLlaveIncorrecta != null)
             {
                 mensajeLlaveIncorrecta.SetActive(true);
+                StartCoroutine(EsconderMensaje());
             }
         }
+    }
+
+    IEnumerator EsconderMensaje()
+    {
+        yield return new WaitForSeconds(2f);
+        if (mensajeLlaveIncorrecta != null)
+            mensajeLlaveIncorrecta.SetActive(false);
     }
 }
