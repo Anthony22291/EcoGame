@@ -17,7 +17,6 @@ public class EnemyAI_Plataforma : MonoBehaviour
 
     [Header("Sprite / Dirección Inicial")]
     [SerializeField] private bool spriteMiraALaIzquierda = true;
-    // Si tu slime mira a la izquierda por defecto → DEBE estar activado
 
     private bool puedeAtacar = true;
     private float contadorAtaque = 0f;
@@ -32,7 +31,6 @@ public class EnemyAI_Plataforma : MonoBehaviour
     private Estado estadoActual = Estado.Patrullando;
 
     private Transform destinoActual;
-    private float direccion = 1f;
 
     void Start()
     {
@@ -42,7 +40,6 @@ public class EnemyAI_Plataforma : MonoBehaviour
         rb.gravityScale = 0;
         rb.freezeRotation = true;
 
-        // Ajustar flip inicial según el sprite
         sr.flipX = spriteMiraALaIzquierda;
 
         GameObject objJugador = GameObject.FindGameObjectWithTag("Player");
@@ -57,7 +54,6 @@ public class EnemyAI_Plataforma : MonoBehaviour
 
     void Update()
     {
-        // Cooldown de ataque
         if (!puedeAtacar)
         {
             contadorAtaque += Time.deltaTime;
@@ -68,9 +64,9 @@ public class EnemyAI_Plataforma : MonoBehaviour
             }
         }
 
-        float distanciaJugador = jugador != null ?
-            Vector2.Distance(transform.position, jugador.position) :
-            Mathf.Infinity;
+        float distanciaJugador = jugador != null
+            ? Vector2.Distance(transform.position, jugador.position)
+            : Mathf.Infinity;
 
         if (distanciaJugador <= rangoDeteccion)
         {
@@ -88,58 +84,74 @@ public class EnemyAI_Plataforma : MonoBehaviour
     {
         switch (estadoActual)
         {
-            case Estado.Patrullando: Patrullar(); break;
-            case Estado.Persiguiendo: PerseguirJugador(); break;
-            case Estado.Atacando: AtacarJugador(); break;
+            case Estado.Patrullando:
+                Patrullar();
+                break;
+
+            case Estado.Persiguiendo:
+                PerseguirJugador();
+                break;
+
+            case Estado.Atacando:
+                AtacarJugador();
+                break;
         }
     }
 
-    // ============================
-    // PATRULLAJE A ↔ B
-    // ============================
+    // ============================================================
+    // PATRULLAJE ENTRE A ↔ B (SIN SIGN y SIN “flip loco”)
+    // ============================================================
     void Patrullar()
     {
-        float distancia = Vector2.Distance(transform.position, destinoActual.position);
+        float dx = destinoActual.position.x - transform.position.x;
 
-        if (distancia < 0.2f)
+        // Cambio de destino si llega
+        if (Mathf.Abs(dx) < 0.1f)
+        {
             destinoActual = destinoActual == puntoA ? puntoB : puntoA;
+            dx = destinoActual.position.x - transform.position.x;
+        }
 
-        direccion = Mathf.Sign(destinoActual.position.x - transform.position.x);
+        float dir = dx > 0 ? 1f : -1f;
 
-        rb.velocity = new Vector2(direccion * velocidadMovimiento, 0);
+        rb.velocity = new Vector2(dir * velocidadMovimiento, 0);
 
-        // FIX DEL FLIP
-        sr.flipX = (direccion < 0) != spriteMiraALaIzquierda;
+        // Flip estable
+        bool mirarIzq = dir < 0;
+        sr.flipX = (mirarIzq != spriteMiraALaIzquierda);
     }
 
-    // ============================
+    // ============================================================
     // PERSECUCIÓN
-    // ============================
+    // ============================================================
     void PerseguirJugador()
     {
         if (jugador == null) return;
 
-        direccion = Mathf.Sign(jugador.position.x - transform.position.x);
+        float dx = jugador.position.x - transform.position.x;
 
-        rb.velocity = new Vector2(velocidadMovimiento * direccion, 0);
+        float dir = dx > 0 ? 1f : -1f;
 
-        // FIX DEL FLIP
-        sr.flipX = (direccion < 0) != spriteMiraALaIzquierda;
+        rb.velocity = new Vector2(dir * velocidadMovimiento, 0);
+
+        bool mirarIzq = dir < 0;
+        sr.flipX = (mirarIzq != spriteMiraALaIzquierda);
     }
 
-    // ============================
+    // ============================================================
     // ATAQUE
-    // ============================
+    // ============================================================
     void AtacarJugador()
     {
         rb.velocity = Vector2.zero;
 
         if (jugador == null) return;
 
-        direccion = Mathf.Sign(jugador.position.x - transform.position.x);
+        float dx = jugador.position.x - transform.position.x;
+        float dir = dx > 0 ? 1f : -1f;
 
-        // FIX DEL FLIP
-        sr.flipX = (direccion < 0) != spriteMiraALaIzquierda;
+        bool mirarIzq = dir < 0;
+        sr.flipX = (mirarIzq != spriteMiraALaIzquierda);
 
         if (puedeAtacar)
         {
@@ -148,9 +160,6 @@ public class EnemyAI_Plataforma : MonoBehaviour
         }
     }
 
-    // ============================
-    // GIZMOS
-    // ============================
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
