@@ -428,7 +428,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05216846, y: 0.914739}
   m_AnchorMax: {x: 0.06458423, y: 0.9373695}
-  m_AnchoredPosition: {x: -29, y: 1}
+  m_AnchoredPosition: {x: -28.999878, y: 1}
   m_SizeDelta: {x: 168.38, y: 38}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &522163312
@@ -1058,18 +1058,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02056371, y: -0.11099424}
+  m_Offset: {x: 0.009693384, y: -0.11099424}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.17, y: 0.21}
+    oldSize: {x: 0.17, y: 0.22}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.08316783, y: 0.014836356}
+  m_Size: {x: 0.14368199, y: 0.014836356}
   m_EdgeRadius: 0
 --- !u!60 &748965342
 PolygonCollider2D:
@@ -1088,7 +1088,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.17, y: 0.21}
+    oldSize: {x: 0.17, y: 0.22}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1096,16 +1096,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.007889841, y: 0.06860941}
-      - {x: -0.0072869956, y: 0.05087059}
-      - {x: -0.031577203, y: 0.03432943}
-      - {x: -0.049104024, y: -0.011594014}
-      - {x: -0.05374581, y: -0.06648472}
+    - - {x: 0.032517716, y: 0.012317138}
+      - {x: 0.0032678898, y: 0.015687898}
+      - {x: -0.019615078, y: 0.00970158}
+      - {x: -0.072324656, y: 0.008811945}
+      - {x: -0.06500431, y: -0.10307469}
       - {x: -0.030366939, y: -0.11337887}
       - {x: 0.0010753851, y: -0.108310565}
-      - {x: 0.02333647, y: -0.021689411}
+      - {x: 0.050778925, y: -0.10190588}
       - {x: 0.054590683, y: 0.0055752937}
-      - {x: 0.05459057, y: 0.067764714}
+      - {x: 0.072181955, y: 0.011472443}
 --- !u!212 &748965343
 SpriteRenderer:
   m_ObjectHideFlags: 0
