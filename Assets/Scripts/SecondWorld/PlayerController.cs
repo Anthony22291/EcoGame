@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
 
     // -----------------------------------------------------
-    // SISTEMA DE VIDA (DE TU COMPAÑERO)
+    // SISTEMA DE VIDA 
     // -----------------------------------------------------
 
     [Header("Sistema de Vida")]
