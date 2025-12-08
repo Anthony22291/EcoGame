@@ -527557,7 +527557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackHitbox: {fileID: 0}
   velocidadMovimiento: 3
-  maxHealth: 15
+  maxHealth: 1
   fullHeart: {fileID: 1564688358316481467, guid: fd825f27eecdf5d4eb37d2f58e864d88, type: 3}
   emptyHeart: {fileID: 5726080727020278575, guid: fd825f27eecdf5d4eb37d2f58e864d88, type: 3}
   heartsContainer: {fileID: 1637829665}
