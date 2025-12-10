@@ -30,6 +30,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float attackDuration = 0.3f;
     private bool isAttacking = false;
 
+    [Header("Particles")]
+    public ParticleSystem walkParticles;
+
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -57,6 +60,12 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         CreateHearts();
         UpdateHearts();
+
+        // Asegurarse de que las partículas estén detenidas al inicio
+        if (walkParticles != null)
+        {
+            walkParticles.Stop();
+        }
     }
 
     void Update()
@@ -79,6 +88,9 @@ public class Player : MonoBehaviour
             ultimaDireccion = movimiento;
         }
 
+        // Controlar las partículas según el movimiento
+        HandleWalkParticles();
+
         UpdateHitboxPosition();
 
         if (animator != null)
@@ -100,6 +112,28 @@ public class Player : MonoBehaviour
         if (!isKnockedBack && !isDead && !isAttacking)
         {
             rb.MovePosition(rb.position + movimiento * velocidadMovimiento * Time.fixedDeltaTime);
+        }
+    }
+
+    void HandleWalkParticles()
+    {
+        if (walkParticles == null) return;
+
+        // Si el jugador se está moviendo
+        if (movimiento.magnitude > 0)
+        {
+            if (!walkParticles.isPlaying)
+            {
+                walkParticles.Play();
+            }
+        }
+        else
+        {
+            // Si el jugador no se está moviendo
+            if (walkParticles.isPlaying)
+            {
+                walkParticles.Stop();
+            }
         }
     }
 
@@ -217,6 +251,12 @@ public class Player : MonoBehaviour
     {
         isKnockedBack = true;
 
+        // Detener partículas durante knockback
+        if (walkParticles != null && walkParticles.isPlaying)
+        {
+            walkParticles.Stop();
+        }
+
         Vector2 knockbackDirection = ((Vector2)transform.position - damageSource).normalized;
         rb.velocity = knockbackDirection * knockbackForce;
 
@@ -233,6 +273,12 @@ public class Player : MonoBehaviour
         isDead = true;
         rb.velocity = Vector2.zero;
         movimiento = Vector2.zero;
+
+        // Detener partículas al morir
+        if (walkParticles != null && walkParticles.isPlaying)
+        {
+            walkParticles.Stop();
+        }
 
         StartCoroutine(RespawnCoroutine());
     }
@@ -337,5 +383,4 @@ public class Player : MonoBehaviour
 
         isAttacking = false;
     }
-
 }
