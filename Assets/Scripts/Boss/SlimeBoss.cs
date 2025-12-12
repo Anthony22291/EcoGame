@@ -5,8 +5,12 @@ public class SlimeBoss : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private Transform player;
-    [SerializeField] private Transform[] patrolPoints;
+    [SerializeField] private Transform[] patrolPoints; // Puntos para caminar
     [SerializeField] private SpriteRenderer spriteRenderer;
+
+    [Header("Sprites del Slime")]
+    [SerializeField] private Sprite idleSprite; // Sprite cuando está quieto
+    [SerializeField] private Sprite walkSprite; // Sprite cuando se mueve
 
     [Header("Estadísticas")]
     [SerializeField] private int maxHealth = 10;
@@ -23,35 +27,51 @@ public class SlimeBoss : MonoBehaviour
     [SerializeField] private float spikeSpeed = 5f;
     private bool isGrounded = true;
 
-    [Header("Estados")]
-    [SerializeField] private int attacksBeforeVulnerable = 3; // Ataques antes de ser vulnerable
-    [SerializeField] private float vulnerableDuration = 5f; // Duración del estado vulnerable
-    [SerializeField] private float warningDuration = 2f; // Tiempo de advertencia antes de volver a inmune
+    [Header("Ataque Embestida")]
+    [SerializeField] private float dashSpeed = 12f;
+    [SerializeField] private float dashDuration = 0.3f;
+    [SerializeField] private float dashCooldown = 3f;
+    [SerializeField] private GameObject warningIcon;  // Icono de advertencia sobre el boss
+
+    [Header("Ataque Spikes del Cielo")]
+    [SerializeField] private GameObject fallingSpikePrefab;
+    [SerializeField] private int spikesPerWave = 5;
+    [SerializeField] private float spikeSpawnWidth = 8f;
+    [SerializeField] private float spikeSpawnHeight = 6f;
+    [SerializeField] private float timeBetweenSpikes = 0.2f;
+
+    [Header("Estados de Vulnerabilidad")]
+    [SerializeField] private int attacksBeforeVulnerable = 3;
+    [SerializeField] private float vulnerableDuration = 5f;
+    [SerializeField] private float warningDuration = 2f;
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color vulnerableColor = Color.red;
-
-
-    [Header("Sprites del Slime")]
-    [SerializeField] private Sprite idleSprite; // Sprite cuando está quieto
-    [SerializeField] private Sprite walkSprite; // Sprite cuando se mueve
 
     private int attackCount = 0;
     private bool isVulnerable = false;
     private bool isInWarningPhase = false;
 
-    [Header("Puerta de Salida")]
-    [SerializeField] private ExitDoor exitDoor;
+    private enum BossState
+    {
+        Patrol,
+        PrepareJump,
+        Jumping,
+        DashAttack,
+        SpikeRain,
+        Vulnerable,
+        Warning
+    }
 
-
-    [Header("Música")]
-    [SerializeField] private AudioSource bossMusicSource; // Referencia al AudioSource 
-
-    // Estado de la máquina de estados
-    private enum BossState { Patrol, PrepareJump, Jumping, Vulnerable, Warning }
     private BossState currentState;
 
     private Rigidbody2D rb;
     private Vector2 targetPosition;
+
+    [Header("Puerta de Salida")]
+    [SerializeField] private ExitDoor exitDoor;
+
+    [Header("Música del Boss")]
+    [SerializeField] private AudioSource bossMusicSource;
 
     void Start()
     {
@@ -66,6 +86,11 @@ public class SlimeBoss : MonoBehaviour
 
         if (patrolPoints.Length > 0)
             targetPosition = patrolPoints[currentPatrolIndex].position;
+
+        if (warningIcon != null)
+            warningIcon.SetActive(false);
+
+        UpdateSprite(false, 0);
     }
 
     void Update()
@@ -76,25 +101,25 @@ public class SlimeBoss : MonoBehaviour
                 PatrolBehavior();
                 break;
             case BossState.PrepareJump:
-                // Esperar preparación
                 break;
             case BossState.Jumping:
-                // Física maneja el salto
+                break;
+            case BossState.DashAttack:
+                break;
+            case BossState.SpikeRain:
                 break;
             case BossState.Vulnerable:
-                // Solo espera, no se mueve
                 break;
             case BossState.Warning:
-                // Solo espera
                 break;
         }
     }
+
     // ==================== CAMBIO DE SPRITES ====================
     void UpdateSprite(bool isMoving, float directionX)
     {
         if (spriteRenderer == null) return;
 
-        // Cambiar sprite según si está en movimiento o quieto
         if (isMoving && walkSprite != null)
         {
             spriteRenderer.sprite = walkSprite;
@@ -104,11 +129,8 @@ public class SlimeBoss : MonoBehaviour
             spriteRenderer.sprite = idleSprite;
         }
 
-        // Manejar el flip según la dirección
         if (directionX != 0)
         {
-            // Si va a la derecha: FlipX = true
-            // Si va a la izquierda: FlipX = false
             spriteRenderer.flipX = directionX > 0;
         }
     }
@@ -118,37 +140,39 @@ public class SlimeBoss : MonoBehaviour
     {
         if (patrolPoints.Length == 0) return;
 
-        // Moverse hacia el punto de patrulla actual
-        Vector2 direction = ((Vector2)patrolPoints[currentPatrolIndex].position - (Vector2)transform.position).normalized;
-        rb.velocity = new Vector2(direction.x * walkSpeed, rb.velocity.y);
+        Vector2 target = patrolPoints[currentPatrolIndex].position;
+        Vector2 direction = (target - (Vector2)transform.position).normalized;
 
-        // Actualizar sprite (en movimiento)
+        rb.velocity = new Vector2(direction.x * walkSpeed, rb.velocity.y);
         UpdateSprite(true, direction.x);
 
-        // Si llegó al punto, cambiar al siguiente
-        if (Vector2.Distance(transform.position, patrolPoints[currentPatrolIndex].position) < 0.5f)
+        if (Vector2.Distance(transform.position, target) < 0.5f)
         {
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
 
-            // Decidir si hacer ataque de salto
-            if (Random.value > 0.5f)
+            float r = Random.value;
+            if (r < 0.33f)
             {
                 StartCoroutine(PrepareJumpAttack());
             }
+            else if (r < 0.66f)
+            {
+                StartCoroutine(DashAttack());
+            }
+            else
+            {
+                StartCoroutine(SpikeRainAttack());
+            }
         }
     }
-
 
     // ==================== ATAQUE DE SALTO ====================
     IEnumerator PrepareJumpAttack()
     {
         currentState = BossState.PrepareJump;
         rb.velocity = Vector2.zero;
-
-        // Cambiar a sprite idle ya que se detiene
         UpdateSprite(false, 0);
 
-        // Volver al punto más cercano
         Transform closestPoint = GetClosestPatrolPoint();
         if (closestPoint != null)
         {
@@ -161,7 +185,6 @@ public class SlimeBoss : MonoBehaviour
                 moveTime += Time.deltaTime * 2f;
                 transform.position = Vector2.Lerp(startPos, targetPos, moveTime);
 
-                // Actualizar flip mientras se mueve hacia el punto
                 float dirX = targetPos.x - transform.position.x;
                 UpdateSprite(true, dirX);
 
@@ -169,37 +192,29 @@ public class SlimeBoss : MonoBehaviour
             }
         }
 
-        // Preparación visual (sprite idle)
         UpdateSprite(false, 0);
         yield return new WaitForSeconds(jumpPrepareTime);
 
-        // Saltar hacia el jugador
         currentState = BossState.Jumping;
         Vector2 jumpDirection = ((Vector2)player.position - (Vector2)transform.position).normalized;
 
-        // Actualizar flip según dirección del salto
         UpdateSprite(false, jumpDirection.x);
-
         rb.velocity = new Vector2(jumpDirection.x * 5f, jumpForce);
         isGrounded = false;
     }
 
-
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Detectar cuando cae al suelo después del salto
         if (collision.gameObject.CompareTag("Ground") && currentState == BossState.Jumping)
         {
             isGrounded = true;
             rb.velocity = Vector2.zero;
+            UpdateSprite(false, 0);
 
-            // Disparar pinchos
             ShootSpikes();
 
-            // Incrementar contador de ataques
             attackCount++;
 
-            // Verificar si debe entrar en estado vulnerable
             if (attackCount >= attacksBeforeVulnerable)
             {
                 StartCoroutine(EnterVulnerableState());
@@ -215,19 +230,79 @@ public class SlimeBoss : MonoBehaviour
     {
         if (spikePrefab == null) return;
 
-        // Dispara pincho hacia la derecha
         GameObject spikeRight = Instantiate(spikePrefab, transform.position, Quaternion.identity);
         Rigidbody2D rbRight = spikeRight.GetComponent<Rigidbody2D>();
         if (rbRight != null)
             rbRight.velocity = Vector2.right * spikeSpeed;
         Destroy(spikeRight, 5f);
 
-        // Dispara pincho hacia la izquierda
         GameObject spikeLeft = Instantiate(spikePrefab, transform.position, Quaternion.identity);
         Rigidbody2D rbLeft = spikeLeft.GetComponent<Rigidbody2D>();
         if (rbLeft != null)
             rbLeft.velocity = Vector2.left * spikeSpeed;
         Destroy(spikeLeft, 5f);
+    }
+
+    // ==================== ATAQUE EMBESTIDA ====================
+    IEnumerator DashAttack()
+    {
+        currentState = BossState.DashAttack;
+        rb.velocity = Vector2.zero;
+
+        float dirX = player.position.x - transform.position.x;
+        if (dirX != 0)
+            UpdateSprite(false, dirX);
+
+        if (warningIcon != null)
+            warningIcon.SetActive(true);
+
+        yield return new WaitForSeconds(0.6f);
+
+        if (warningIcon != null)
+            warningIcon.SetActive(false);
+
+        float dashDir = Mathf.Sign(dirX == 0 ? 1 : dirX);
+        rb.velocity = new Vector2(dashDir * dashSpeed, 0f);
+        UpdateSprite(true, dashDir);
+
+        yield return new WaitForSeconds(dashDuration);
+
+        rb.velocity = Vector2.zero;
+        UpdateSprite(false, 0);
+
+        yield return new WaitForSeconds(dashCooldown);
+
+        currentState = BossState.Patrol;
+    }
+
+    // ==================== ATAQUE SPIKES DEL CIELO ====================
+    IEnumerator SpikeRainAttack()
+    {
+        currentState = BossState.SpikeRain;
+        rb.velocity = Vector2.zero;
+        UpdateSprite(false, 0);
+
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = 0; i < spikesPerWave; i++)
+        {
+            if (fallingSpikePrefab != null && player != null)
+            {
+                float randomX = player.position.x +
+                                Random.Range(-spikeSpawnWidth * 0.5f, spikeSpawnWidth * 0.5f);
+                Vector3 spawnPos = new Vector3(randomX,
+                                               player.position.y + spikeSpawnHeight,
+                                               0f);
+
+                Instantiate(fallingSpikePrefab, spawnPos, Quaternion.identity);
+            }
+
+            yield return new WaitForSeconds(timeBetweenSpikes);
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        currentState = BossState.Patrol;
     }
 
     // ==================== ESTADO VULNERABLE ====================
@@ -238,36 +313,29 @@ public class SlimeBoss : MonoBehaviour
         rb.velocity = Vector2.zero;
         attackCount = 0;
 
-        // Cambiar a sprite idle y color vulnerable
         UpdateSprite(false, 0);
         spriteRenderer.color = vulnerableColor;
 
-        // Esperar duración vulnerable
         yield return new WaitForSeconds(vulnerableDuration);
 
-        // Si no le quitaron vida, entrar en fase de advertencia
         if (isVulnerable)
         {
             StartCoroutine(WarningPhase());
         }
     }
 
-
     IEnumerator WarningPhase()
     {
         currentState = BossState.Warning;
         isInWarningPhase = true;
 
-        // Mantener sprite idle y volver a color normal
         UpdateSprite(false, 0);
         spriteRenderer.color = normalColor;
 
         yield return new WaitForSeconds(warningDuration);
 
-        // Salir del estado vulnerable
         ExitVulnerableState();
     }
-
 
     void ExitVulnerableState()
     {
@@ -277,14 +345,12 @@ public class SlimeBoss : MonoBehaviour
         currentState = BossState.Patrol;
     }
 
-    // ==================== SISTEMA DE DAÑO ====================
+    // ==================== DAÑO ====================
     public void TakeDamage(int damage)
     {
-        // Solo puede recibir daño si está vulnerable y no en fase de advertencia
         if (!isVulnerable || isInWarningPhase) return;
 
         currentHealth -= damage;
-
         Debug.Log("Boss recibió daño. Vida: " + currentHealth);
 
         if (currentHealth <= 0)
@@ -293,7 +359,6 @@ public class SlimeBoss : MonoBehaviour
         }
         else
         {
-            // Salir del estado vulnerable inmediatamente
             StopAllCoroutines();
             ExitVulnerableState();
         }
@@ -303,17 +368,11 @@ public class SlimeBoss : MonoBehaviour
     {
         Debug.Log("¡Boss derrotado!");
 
-        // Detener la música del boss
         if (bossMusicSource != null)
-        {
             bossMusicSource.Stop();
-        }
 
-        // Activar y abrir la puerta
         if (exitDoor != null)
-        {
             exitDoor.ActivateDoor();
-        }
 
         Destroy(gameObject);
     }
@@ -339,7 +398,6 @@ public class SlimeBoss : MonoBehaviour
         return closest;
     }
 
-    // Visualizar en editor
     void OnDrawGizmosSelected()
     {
         if (patrolPoints == null || patrolPoints.Length == 0) return;

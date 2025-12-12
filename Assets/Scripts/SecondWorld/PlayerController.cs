@@ -105,6 +105,13 @@ public class PlayerController : MonoBehaviour
             Attack();
             nextAttackTime = Time.time + attackCooldown;
         }
+        bool attackInput = Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0);
+
+        if (attackInput && Time.time >= nextAttackTime && !isDead)
+        {
+            Attack();
+            nextAttackTime = Time.time + attackCooldown;
+        }
         UpdateAnimations();
     }
     void Attack()

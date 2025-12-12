@@ -415,7 +415,9 @@ MonoBehaviour:
   - {fileID: 278376727}
   - {fileID: 1028438549}
   spriteRenderer: {fileID: 479272103}
-  maxHealth: 3
+  idleSprite: {fileID: 6756738536174712074, guid: 976804cbba1374b43abc0823d14ae0d1, type: 3}
+  walkSprite: {fileID: -8417157542053096112, guid: ade247f16a3899b4f9991744d4842d24, type: 3}
+  maxHealth: 1
   walkSpeed: 4
   jumpForce: 15
   jumpPrepareTime: 1
@@ -426,10 +428,11 @@ MonoBehaviour:
   warningDuration: 2
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   vulnerableColor: {r: 1, g: 0, b: 0, a: 1}
-  idleSprite: {fileID: 6756738536174712074, guid: 976804cbba1374b43abc0823d14ae0d1, type: 3}
-  walkSprite: {fileID: -8417157542053096112, guid: ade247f16a3899b4f9991744d4842d24, type: 3}
   exitDoor: {fileID: 1048074523}
   bossMusicSource: {fileID: 346853160}
+  slimeNormalPrefab: {fileID: 540170939557695107, guid: 06a2d26a309006e409ad6d96e915d17d, type: 3}
+  spawnOffset1: {x: -1, y: 0}
+  spawnOffset2: {x: 1, y: 0}
 --- !u!4 &479272105
 Transform:
   m_ObjectHideFlags: 0
@@ -3807,7 +3810,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e24015793ae23543a85cd000e6ab37d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0aaae5fadb836614bb027d4343416e23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3826,8 +3829,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508521669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.8066, y: 1.454, z: 0}
-  m_LocalScale: {x: 1.6093501, y: 1.5986598, z: 1}
+  m_LocalPosition: {x: -4.0466, y: 1.6539, z: 0}
+  m_LocalScale: {x: 2.512244, y: 2.091173, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
