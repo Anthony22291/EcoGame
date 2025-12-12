@@ -232,7 +232,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913966764}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 1e802d47be252f3439d6dfed1a87be1e, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 1253228bd36485f47a1d4db1c6c9fabc, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 1489325013}
@@ -285,4 +285,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7fcfbe10f531548abd35ef1e90d4bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: Boss
+  nextScene: Menu
