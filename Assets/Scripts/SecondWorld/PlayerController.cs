@@ -63,7 +63,13 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 posicionInicial;
 
-
+    [Header("Ataque")]
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private LayerMask enemyLayers;
+    [SerializeField] private int attackDamage = 1;
+    [SerializeField] private float attackCooldown = 0.5f;
+    private float nextAttackTime = 0f;
     // =====================================================
     // START
     // =====================================================
@@ -94,7 +100,34 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             jumpPressed = true;
 
+        if (Input.GetKeyDown(KeyCode.Z) && Time.time >= nextAttackTime && !isDead)
+        {
+            Attack();
+            nextAttackTime = Time.time + attackCooldown;
+        }
         UpdateAnimations();
+    }
+    void Attack()
+    {
+        animator.SetTrigger("Attack");
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            SlimeBoss boss = enemy.GetComponent<SlimeBoss>();
+            if (boss != null)
+            {
+                boss.TakeDamage(attackDamage);
+            }
+        }
+    }
+    void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
     // =====================================================
