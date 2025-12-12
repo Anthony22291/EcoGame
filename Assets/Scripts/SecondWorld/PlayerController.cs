@@ -70,6 +70,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackCooldown = 0.5f;
     private float nextAttackTime = 0f;
+
+    // =====================================================
+    // NUEVO: AUDIO
+    // =====================================================
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip attackClip; // Sonido de ataque
+    [SerializeField] private AudioClip jumpClip;   // Sonido de salto
+
+    private AudioSource audioSource;
+
     // =====================================================
     // START
     // =====================================================
@@ -86,6 +96,13 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
         CreateHearts();
         UpdateHearts();
+
+        // NUEVO: Obtener o añadir AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     // =====================================================
@@ -114,9 +131,16 @@ public class PlayerController : MonoBehaviour
         }
         UpdateAnimations();
     }
+
     void Attack()
     {
         animator.SetTrigger("Attack");
+
+        // NUEVO: Reproducir sonido de ataque
+        if (audioSource != null && attackClip != null)
+        {
+            audioSource.PlayOneShot(attackClip);
+        }
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
@@ -129,6 +153,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
@@ -203,6 +228,12 @@ public class PlayerController : MonoBehaviour
 
             coyoteCounter = 0f;
             jumpBufferCounter = 0f;
+
+            // NUEVO: Reproducir sonido de salto
+            if (audioSource != null && jumpClip != null)
+            {
+                audioSource.PlayOneShot(jumpClip);
+            }
         }
     }
 

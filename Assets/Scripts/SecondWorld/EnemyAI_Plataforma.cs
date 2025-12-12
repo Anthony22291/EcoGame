@@ -18,6 +18,22 @@ public class EnemyAI_Plataforma : MonoBehaviour
     [Header("Sprite / Dirección Inicial")]
     [SerializeField] private bool spriteMiraALaIzquierda = true;
 
+    // ============================================================
+    // NUEVO: SALUD Y AUDIO DEL ENEMIGO
+    // ============================================================
+    [Header("Salud y Muerte")]
+    [SerializeField] private int maxHealth = 3;
+    private int currentHealth;
+
+    [Header("Audio Slime")]
+    [SerializeField] private AudioClip hitSoundClip;    // Sonido al recibir daño
+    [SerializeField] private AudioClip deathSoundClip;  // Sonido de muerte (muerte.ogg)
+    [SerializeField] private AudioClip attackSoundClip; // Sonido al atacar al jugador
+
+    private AudioSource audioSource;
+    private bool isDead = false;
+    // ============================================================
+
     private bool puedeAtacar = true;
     private float contadorAtaque = 0f;
 
@@ -25,7 +41,7 @@ public class EnemyAI_Plataforma : MonoBehaviour
     private SpriteRenderer sr;
 
     private Transform jugador;
-    private Player playerScript;
+    private Player playerScript; // Script Player para el top-down. Si usas PlayerController, esto aún funcionaría.
 
     private enum Estado { Patrullando, Persiguiendo, Atacando }
     private Estado estadoActual = Estado.Patrullando;
@@ -37,6 +53,15 @@ public class EnemyAI_Plataforma : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
+        // NUEVO: Inicializar AudioSource y Salud
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        currentHealth = maxHealth;
+        // FIN NUEVO
+
         rb.gravityScale = 0;
         rb.freezeRotation = true;
 
@@ -46,7 +71,7 @@ public class EnemyAI_Plataforma : MonoBehaviour
         if (objJugador != null)
         {
             jugador = objJugador.transform;
-            playerScript = objJugador.GetComponent<Player>();
+            playerScript = objJugador.GetComponent<Player>(); // Puede ser Player o PlayerController
         }
 
         destinoActual = puntoB;
@@ -54,6 +79,8 @@ public class EnemyAI_Plataforma : MonoBehaviour
 
     void Update()
     {
+        if (isDead) return; // Detener comportamiento si está muerto
+
         if (!puedeAtacar)
         {
             contadorAtaque += Time.deltaTime;
@@ -82,6 +109,8 @@ public class EnemyAI_Plataforma : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isDead) return; // Detener movimiento si está muerto
+
         switch (estadoActual)
         {
             case Estado.Patrullando:
@@ -99,10 +128,11 @@ public class EnemyAI_Plataforma : MonoBehaviour
     }
 
     // ============================================================
-    // PATRULLAJE ENTRE A ↔ B (SIN SIGN y SIN “flip loco”)
+    // PATRULLAJE
     // ============================================================
     void Patrullar()
     {
+        // ... (código Patrullar existente)
         float dx = destinoActual.position.x - transform.position.x;
 
         // Cambio de destino si llega
@@ -114,7 +144,7 @@ public class EnemyAI_Plataforma : MonoBehaviour
 
         float dir = dx > 0 ? 1f : -1f;
 
-        rb.velocity = new Vector2(dir * velocidadMovimiento, 0);
+        rb.velocity = new Vector2(dir * velocidadMovimiento, rb.velocity.y); // Usar rb.velocity.y para plataformas
 
         // Flip estable
         bool mirarIzq = dir < 0;
@@ -132,7 +162,7 @@ public class EnemyAI_Plataforma : MonoBehaviour
 
         float dir = dx > 0 ? 1f : -1f;
 
-        rb.velocity = new Vector2(dir * velocidadMovimiento, 0);
+        rb.velocity = new Vector2(dir * velocidadMovimiento, rb.velocity.y); // Usar rb.velocity.y
 
         bool mirarIzq = dir < 0;
         sr.flipX = (mirarIzq != spriteMiraALaIzquierda);
@@ -143,7 +173,7 @@ public class EnemyAI_Plataforma : MonoBehaviour
     // ============================================================
     void AtacarJugador()
     {
-        rb.velocity = Vector2.zero;
+        rb.velocity = Vector2.zero; // Detener movimiento
 
         if (jugador == null) return;
 
@@ -155,11 +185,62 @@ public class EnemyAI_Plataforma : MonoBehaviour
 
         if (puedeAtacar)
         {
+            // NEW: Reproducir sonido de ataque
+            if (audioSource != null && attackSoundClip != null)
+            {
+                audioSource.PlayOneShot(attackSoundClip);
+            }
+
+            // Asumiendo que el script del jugador es Player o PlayerController (ambos tienen TakeDamage)
             playerScript.TakeDamage(danoPorContacto, transform.position);
             puedeAtacar = false;
         }
     }
 
+    // ============================================================
+    // NUEVO: SISTEMA DE DAÑO
+    // ============================================================
+    public void TakeDamage(int damage)
+    {
+        if (isDead) return;
+
+        currentHealth -= damage;
+
+        // Reproducir sonido de golpe
+        if (audioSource != null && hitSoundClip != null)
+        {
+            audioSource.PlayOneShot(hitSoundClip);
+        }
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        if (isDead) return;
+
+        isDead = true;
+        rb.velocity = Vector2.zero;
+        GetComponent<Collider2D>().enabled = false; // Desactivar colisión para que el jugador no reciba más daño
+        sr.enabled = false; // O usar una animación de muerte
+
+        // Reproducir sonido de muerte
+        if (deathSoundClip != null)
+        {
+            // Usar PlayClipAtPoint para que el sonido se reproduzca incluso si el objeto se destruye
+            AudioSource.PlayClipAtPoint(deathSoundClip, transform.position);
+        }
+
+        // Destruir el enemigo después de un pequeño retraso
+        Destroy(gameObject, 0.5f);
+    }
+
+    // ============================================================
+    // GIZMOS (Sin cambios)
+    // ============================================================
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
