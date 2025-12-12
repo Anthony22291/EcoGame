@@ -407,7 +407,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 479272100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa03e614b71d4e946b0956f1c8d3eb44, type: 3}
+  m_Script: {fileID: 11500000, guid: 44fd9b9c43df1be41acf3cc5175a39c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 804677544}
@@ -415,17 +415,17 @@ MonoBehaviour:
   - {fileID: 278376727}
   - {fileID: 1028438549}
   spriteRenderer: {fileID: 479272103}
-  maxHealth: 2
-  walkSpeed: 2
+  maxHealth: 3
+  walkSpeed: 4
   jumpForce: 15
   jumpPrepareTime: 1
   spikePrefab: {fileID: 4138619940670905078, guid: 1a7b5b46e41f9f541b67f02b07e8b671, type: 3}
-  spikeSpeed: 5
+  spikeSpeed: 8
   attacksBeforeVulnerable: 1
   vulnerableDuration: 5
   warningDuration: 2
   normalColor: {r: 1, g: 1, b: 1, a: 1}
-  vulnerableColor: {r: 1, g: 0.21318129, b: 0, a: 1}
+  vulnerableColor: {r: 1, g: 0, b: 0, a: 1}
   idleSprite: {fileID: 6756738536174712074, guid: 976804cbba1374b43abc0823d14ae0d1, type: 3}
   walkSprite: {fileID: -8417157542053096112, guid: ade247f16a3899b4f9991744d4842d24, type: 3}
   exitDoor: {fileID: 1048074523}
