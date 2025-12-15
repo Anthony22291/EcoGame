@@ -72,11 +72,18 @@ public class PlayerController : MonoBehaviour
     private float nextAttackTime = 0f;
 
     // =====================================================
-    // NUEVO: AUDIO
+    // AUDIO COMPLETO
     // =====================================================
     [Header("Audio Clips")]
-    [SerializeField] private AudioClip attackClip; // Sonido de ataque
-    [SerializeField] private AudioClip jumpClip;   // Sonido de salto
+    [SerializeField] private AudioClip attackClip;  // Sonido de ataque
+    [SerializeField] private AudioClip jumpClip;    // Sonido de salto
+    [SerializeField] private AudioClip walkClip;    // Sonido de caminar
+    [SerializeField] private AudioClip damageClip;  // Sonido de recibir daño
+    [SerializeField] private AudioClip deathClip;   // Sonido de muerte
+
+    [Header("Configuración de Pasos")]
+    [SerializeField] private float footstepInterval = 0.3f; // Intervalo entre pasos
+    private float footstepTimer = 0f;
 
     private AudioSource audioSource;
 
@@ -97,12 +104,13 @@ public class PlayerController : MonoBehaviour
         CreateHearts();
         UpdateHearts();
 
-        // NUEVO: Obtener o añadir AudioSource
+        // Obtener o añadir AudioSource
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+        audioSource.playOnAwake = false;
     }
 
     // =====================================================
@@ -117,11 +125,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             jumpPressed = true;
 
-        if (Input.GetKeyDown(KeyCode.Z) && Time.time >= nextAttackTime && !isDead)
-        {
-            Attack();
-            nextAttackTime = Time.time + attackCooldown;
-        }
         bool attackInput = Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0);
 
         if (attackInput && Time.time >= nextAttackTime && !isDead)
@@ -129,30 +132,40 @@ public class PlayerController : MonoBehaviour
             Attack();
             nextAttackTime = Time.time + attackCooldown;
         }
+
         UpdateAnimations();
+        HandleFootsteps();
     }
 
     void Attack()
     {
         animator.SetTrigger("Attack");
 
-        // NUEVO: Reproducir sonido de ataque
-        if (audioSource != null && attackClip != null)
-        {
-            audioSource.PlayOneShot(attackClip);
-        }
+        // Reproducir sonido de ataque
+        PlaySound(attackClip);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
+            // Daño al boss
             SlimeBoss boss = enemy.GetComponent<SlimeBoss>();
             if (boss != null)
             {
                 boss.TakeDamage(attackDamage);
+                continue;
+            }
+
+            // Daño a slimes normales
+            EnemyAI_Plataforma slime = enemy.GetComponent<EnemyAI_Plataforma>();
+            if (slime != null)
+            {
+                slime.TakeDamage(attackDamage);
             }
         }
     }
+
+
 
     void OnDrawGizmosSelected()
     {
@@ -183,8 +196,20 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
         if (moveInput != 0)
+        {
             sr.flipX = moveInput < 0;
+
+            // Mover AttackPoint según la dirección
+            if (attackPoint != null)
+            {
+                float direction = moveInput < 0 ? -1f : 1f;
+                attackPoint.localPosition = new Vector3(Mathf.Abs(attackPoint.localPosition.x) * direction,
+                                                         attackPoint.localPosition.y,
+                                                         attackPoint.localPosition.z);
+            }
+        }
     }
+
 
     void UpdateAnimations()
     {
@@ -192,7 +217,29 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Speed", speedX);
 
         animator.SetBool("IsJumping", !IsGrounded && rb.velocity.y > 0);
+    }
 
+    // -----------------------------------------------------
+    // SONIDO DE PASOS
+    // -----------------------------------------------------
+    void HandleFootsteps()
+    {
+        bool isMoving = IsGrounded && Mathf.Abs(moveInput) > 0.1f;
+
+        if (isMoving)
+        {
+            footstepTimer += Time.deltaTime;
+
+            if (footstepTimer >= footstepInterval)
+            {
+                PlaySound(walkClip);
+                footstepTimer = 0f;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
+        }
     }
 
 
@@ -229,17 +276,14 @@ public class PlayerController : MonoBehaviour
             coyoteCounter = 0f;
             jumpBufferCounter = 0f;
 
-            // NUEVO: Reproducir sonido de salto
-            if (audioSource != null && jumpClip != null)
-            {
-                audioSource.PlayOneShot(jumpClip);
-            }
+            // Reproducir sonido de salto
+            PlaySound(jumpClip);
         }
     }
 
 
     // -----------------------------------------------------
-    // SISTEMA DE VIDA (DE TU COMPAÑERO)
+    // SISTEMA DE VIDA
     // -----------------------------------------------------
 
     void CreateHearts()
@@ -269,6 +313,9 @@ public class PlayerController : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHearts();
+
+        // Reproducir sonido de daño
+        PlaySound(damageClip);
 
         StartCoroutine(InvulnerabilityCoroutine());
         StartCoroutine(KnockbackCoroutine(damageSource));
@@ -326,6 +373,9 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         rb.velocity = Vector2.zero;
 
+        // Reproducir sonido de muerte
+        PlaySound(deathClip);
+
         StartCoroutine(RespawnCoroutine());
     }
 
@@ -380,6 +430,18 @@ public class PlayerController : MonoBehaviour
 
         sr.enabled = true;
         isInvulnerable = false;
+    }
+
+
+    // -----------------------------------------------------
+    // REPRODUCIR SONIDO
+    // -----------------------------------------------------
+    void PlaySound(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
     }
 
 

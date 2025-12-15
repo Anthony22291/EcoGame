@@ -2,26 +2,49 @@ using UnityEngine;
 
 public class PlayerAttackHitbox : MonoBehaviour
 {
-    public int damage = 2;
+    [SerializeField] private int attackDamage = 1;
+    [SerializeField] private AudioClip attackSound;
+    private AudioSource audioSource;
 
-    void OnTriggerEnter2D(Collider2D other)
+    private bool canDamage = false;
+
+    void Start()
     {
-        if (!other.CompareTag("Enemy")) return;
-
-        // Intentar hacer daño al enemigo de plataforma
-        EnemyAI_Plataforma enemyPlataforma = other.GetComponent<EnemyAI_Plataforma>();
-        if (enemyPlataforma != null)
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
         {
-            enemyPlataforma.TakeDamage(damage);
-            Debug.Log("Golpe al enemigo de plataforma");
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
+    }
 
-        // Si tienes otros tipos de enemigos, puedes dejar sus llamadas, por ejemplo:
-        // SlimeHealth slime = other.GetComponent<SlimeHealth>();
-        // if (slime != null)
-        // {
-        //     slime.TakeDamage(damage);
-        //     Debug.Log("Golpe al slime");
-        // }
+    public void ActivateHitbox()
+    {
+        canDamage = true;
+
+        // Reproducir sonido de ataque
+        if (attackSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+        }
+    }
+
+    public void DeactivateHitbox()
+    {
+        canDamage = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!canDamage) return;
+
+        if (collision.CompareTag("Enemy"))
+        {
+            SlimeHealth slimeHealth = collision.GetComponent<SlimeHealth>();
+            if (slimeHealth != null)
+            {
+                slimeHealth.TakeDamage(attackDamage);
+                Debug.Log("¡Slime golpeado!");
+            }
+        }
     }
 }

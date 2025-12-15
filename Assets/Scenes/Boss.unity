@@ -427,7 +427,7 @@ MonoBehaviour:
   dashDuration: 0.3
   dashCooldown: 3
   warningIcon: {fileID: 1973421821}
-  fallingSpikePrefab: {fileID: 4138619940670905078, guid: 1a7b5b46e41f9f541b67f02b07e8b671, type: 3}
+  fallingSpikePrefab: {fileID: 4138619940670905078, guid: 9d32218f4f9ddbe4389f4942fa39037c, type: 3}
   spikesPerWave: 5
   spikeSpawnWidth: 8
   spikeSpawnHeight: 6
@@ -725,6 +725,12 @@ MonoBehaviour:
     m_Bits: 64
   attackDamage: 1
   attackCooldown: 0.5
+  attackClip: {fileID: 8300000, guid: dcdd131a1b09e0a408b96b6a7a58dd2c, type: 3}
+  jumpClip: {fileID: 8300000, guid: a4f719523ff574141a4be807f652916f, type: 3}
+  walkClip: {fileID: 8300000, guid: a45b21137176d694bb09064e0b833beb, type: 3}
+  damageClip: {fileID: 8300000, guid: 6e3d77ed05fb44e4d86a9c46350edeb9, type: 3}
+  deathClip: {fileID: 8300000, guid: bbad6fc61257fc149b7b143c6868ab92, type: 3}
+  footstepInterval: 0.3
 --- !u!4 &804677544
 Transform:
   m_ObjectHideFlags: 0
