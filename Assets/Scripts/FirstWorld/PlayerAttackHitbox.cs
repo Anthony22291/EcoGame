@@ -2,17 +2,49 @@ using UnityEngine;
 
 public class PlayerAttackHitbox : MonoBehaviour
 {
-    public int damage = 2;
+    [SerializeField] private int attackDamage = 1;
+    [SerializeField] private AudioClip attackSound;
+    private AudioSource audioSource;
 
-    void OnTriggerEnter2D(Collider2D other)
+    private bool canDamage = false;
+
+    void Start()
     {
-        if (!other.CompareTag("Enemy")) return;
-
-        SlimeHealth slime = other.GetComponent<SlimeHealth>();
-        if (slime != null)
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
         {
-            slime.TakeDamage(damage);
-            Debug.Log("Golpe al slime");
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
+
+    public void ActivateHitbox()
+    {
+        canDamage = true;
+
+        // Reproducir sonido de ataque
+        if (attackSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+        }
+    }
+
+    public void DeactivateHitbox()
+    {
+        canDamage = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!canDamage) return;
+
+        if (collision.CompareTag("Enemy"))
+        {
+            SlimeHealth slimeHealth = collision.GetComponent<SlimeHealth>();
+            if (slimeHealth != null)
+            {
+                slimeHealth.TakeDamage(attackDamage);
+                Debug.Log("¡Slime golpeado!");
+            }
         }
     }
 }

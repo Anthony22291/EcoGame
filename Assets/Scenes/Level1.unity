@@ -532189,7 +532189,6 @@ GameObject:
   - component: {fileID: 1277559120}
   - component: {fileID: 1277559124}
   - component: {fileID: 1277559123}
-  - component: {fileID: 1277559122}
   - component: {fileID: 1277559121}
   - component: {fileID: 1277559119}
   - component: {fileID: 1277559118}
@@ -532360,9 +532359,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3478db8405b3b34ea475a5283f44a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackHitbox: {fileID: 0}
+  attackHitbox: {fileID: 2000989483}
   velocidadMovimiento: 3
-  maxHealth: 15
+  maxHealth: 2
   fullHeart: {fileID: 1564688358316481467, guid: fd825f27eecdf5d4eb37d2f58e864d88, type: 3}
   emptyHeart: {fileID: 5726080727020278575, guid: fd825f27eecdf5d4eb37d2f58e864d88, type: 3}
   heartsContainer: {fileID: 1637829665}
@@ -532374,19 +532373,10 @@ MonoBehaviour:
   fadeAlMorir: 1
   attackDuration: 0.3
   walkParticles: {fileID: 1106929893}
---- !u!114 &1277559122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277559115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4f304a754b055247847ae709e9d1891, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
+  walkSound: {fileID: 8300000, guid: a45b21137176d694bb09064e0b833beb, type: 3}
+  damageSound: {fileID: 8300000, guid: 6e3d77ed05fb44e4d86a9c46350edeb9, type: 3}
+  deathSound: {fileID: 8300000, guid: bbad6fc61257fc149b7b143c6868ab92, type: 3}
+  footstepInterval: 0.4
 --- !u!114 &1277559123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684655,6 +684645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2000989481}
   - component: {fileID: 2000989482}
+  - component: {fileID: 2000989483}
   m_Layer: 0
   m_Name: AttackHitbox
   m_TagString: Untagged
@@ -684689,7 +684680,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.007093191, y: 0.012484595}
+  m_Offset: {x: -0.029223919, y: 0.020230457}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -684700,8 +684691,22 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19, y: 0.25}
+  m_Size: {x: 0.35045147, y: 0.35401538}
   m_EdgeRadius: 0
+--- !u!114 &2000989483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000989480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f304a754b055247847ae709e9d1891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 1
+  attackSound: {fileID: 8300000, guid: dcdd131a1b09e0a408b96b6a7a58dd2c, type: 3}
 --- !u!1 &2025446856
 GameObject:
   m_ObjectHideFlags: 0
@@ -684916,9 +684921,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d93f2a190a7c7cf449b5074bc3605ae0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8751b22c0d2fc394d8a8b600049dcd2a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.235
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0

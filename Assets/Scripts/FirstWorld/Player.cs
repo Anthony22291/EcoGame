@@ -33,6 +33,15 @@ public class Player : MonoBehaviour
     [Header("Particles")]
     public ParticleSystem walkParticles;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip walkSound;
+    [SerializeField] private AudioClip damageSound;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private float footstepInterval = 0.4f;
+
+    private AudioSource audioSource;
+    private float footstepTimer = 0f;
+
     private Rigidbody2D rb;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -60,6 +69,14 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         CreateHearts();
         UpdateHearts();
+
+        // Configurar AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.playOnAwake = false;
 
         // Asegurarse de que las partículas estén detenidas al inicio
         if (walkParticles != null)
@@ -91,6 +108,9 @@ public class Player : MonoBehaviour
         // Controlar las partículas según el movimiento
         HandleWalkParticles();
 
+        // Controlar sonido de pasos
+        HandleFootsteps();
+
         UpdateHitboxPosition();
 
         if (animator != null)
@@ -119,7 +139,6 @@ public class Player : MonoBehaviour
     {
         if (walkParticles == null) return;
 
-        // Si el jugador se está moviendo
         if (movimiento.magnitude > 0)
         {
             if (!walkParticles.isPlaying)
@@ -129,11 +148,36 @@ public class Player : MonoBehaviour
         }
         else
         {
-            // Si el jugador no se está moviendo
             if (walkParticles.isPlaying)
             {
                 walkParticles.Stop();
             }
+        }
+    }
+
+    void HandleFootsteps()
+    {
+        if (movimiento.magnitude > 0)
+        {
+            footstepTimer += Time.deltaTime;
+
+            if (footstepTimer >= footstepInterval)
+            {
+                PlaySound(walkSound);
+                footstepTimer = 0f;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
+        }
+    }
+
+    void PlaySound(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 
@@ -205,6 +249,9 @@ public class Player : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHearts();
 
+        // Reproducir sonido de daño
+        PlaySound(damageSound);
+
         StartCoroutine(InvulnerabilityCoroutine());
         StartCoroutine(KnockbackCoroutine(damageSource));
 
@@ -251,7 +298,6 @@ public class Player : MonoBehaviour
     {
         isKnockedBack = true;
 
-        // Detener partículas durante knockback
         if (walkParticles != null && walkParticles.isPlaying)
         {
             walkParticles.Stop();
@@ -273,6 +319,12 @@ public class Player : MonoBehaviour
         isDead = true;
         rb.velocity = Vector2.zero;
         movimiento = Vector2.zero;
+
+        // Reproducir sonido de muerte
+        if (deathSound != null)
+        {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        }
 
         // Detener partículas al morir
         if (walkParticles != null && walkParticles.isPlaying)
@@ -379,7 +431,17 @@ public class Player : MonoBehaviour
             animator.SetFloat("LastVertical", ultimaDireccion.y);
         }
 
+        if (attackHitbox != null)
+        {
+            attackHitbox.ActivateHitbox();
+        }
+
         yield return new WaitForSeconds(attackDuration);
+
+        if (attackHitbox != null)
+        {
+            attackHitbox.DeactivateHitbox();
+        }
 
         isAttacking = false;
     }
